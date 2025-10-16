@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spent Today - Simple Daily Budgeting</title>
+    <meta name="apple-itunes-app" content="app-id=YOUR_APP_ID_HERE">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Note the path change to ../ for shared files -->
+    <link rel="stylesheet" href="../shared/styles.css">
+    <style>
+        /* Page-specific styles */
+        html { scroll-behavior: smooth; }
+        .phone-frame { /* ... styles for phone frame ... */ }
+        /* ... other page-specific styles ... */
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 antialiased">
+
+    <!-- This div will be populated by ../shared/header.html -->
+    <div id="header-placeholder"></div>
+    
+    <!-- A simple spacer for the fixed header -->
+    <div style="height: 64px;"></div>
+
+    <main>
+        <!-- ... your carousel and app features content ... -->
+    </main>
+
+    <!-- This div will be populated by ../shared/footer.html -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load the shared script -->
+    <script src="../shared/scripts.js"></script>
+    <!-- Page-specific script for the carousel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ... your existing carousel JS logic ...
+        });
+    </script>
+</body>
+</html>
+
