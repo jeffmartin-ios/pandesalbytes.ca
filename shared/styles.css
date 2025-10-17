@@ -146,9 +146,7 @@ a {
     position: fixed;
     inset: 0;
     z-index: 40;
-    background-color: rgba(0,0,0,0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* Removed redundant background and blur here. The glass-effect now handles the full screen background */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease;
@@ -157,13 +155,26 @@ a {
 .menu-overlay.active {
     opacity: 1;
     pointer-events: auto;
+    /* Apply full screen glass effect when active */
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .menu-content {
-    padding-top: 96px; /* 6rem */
+    /* Changed from flex to block to allow menu-scroller to handle vertical layout */
+    display: block; 
     height: 100%;
+    padding-top: 96px; /* 6rem */
+}
+
+/* NEW: Scroll container for the menu links */
+.menu-scroller {
+    max-height: calc(100% - 150px); /* Height minus header space and footer height */
+    overflow-y: auto; /* Enable scrolling */
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Push footer down */
 }
 
 .menu-close-button {
@@ -183,7 +194,7 @@ a {
 .main-nav a {
     display: block;
     color: #fff;
-    font-size: 30px;
+    font-size: 40px; /* UPDATED: Larger font size */
     font-weight: bold;
     padding: 16px 0;
     transition: transform 0.2s;
@@ -191,10 +202,12 @@ a {
 .main-nav a:hover { transform: scale(1.05); }
 
 .menu-footer {
-    margin-top: auto;
+    /* Ensure the footer stays at the bottom of the scroller */
+    margin-top: 40px; 
     text-align: center;
     padding-bottom: 40px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8); /* Slightly brighter footer text */
+    flex-shrink: 0;
 }
 
 .menu-footer-links {
