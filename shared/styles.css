@@ -146,7 +146,6 @@ a {
     position: fixed;
     inset: 0;
     z-index: 40;
-    /* Removed redundant background and blur here. The glass-effect now handles the full screen background */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease;
@@ -162,19 +161,26 @@ a {
 }
 
 .menu-content {
-    /* Changed from flex to block to allow menu-scroller to handle vertical layout */
-    display: block; 
+    /* Updated to Flexbox for vertical centering */
+    display: flex; 
+    flex-direction: column; /* Stacks children vertically */
+    justify-content: center; /* Vertically centers the content */
+    align-items: center; /* Horizontally centers the content */
     height: 100%;
-    padding-top: 96px; /* 6rem */
+    padding-top: 64px; /* Space for the fixed close button */
+    padding-bottom: 64px;
 }
 
-/* NEW: Scroll container for the menu links */
+/* NEW: Scroll container for the menu links (now flex-grow) */
 .menu-scroller {
-    max-height: calc(100% - 150px); /* Height minus header space and footer height */
+    width: 100%; /* Take full width of parent */
+    flex-grow: 1; /* Allows it to take up available vertical space */
+    max-height: 100%; /* Constrain height for scrolling */
     overflow-y: auto; /* Enable scrolling */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Push footer down */
+    justify-content: center; /* Centers items vertically within the scroll area */
+    align-items: center;
 }
 
 .menu-close-button {
@@ -190,26 +196,30 @@ a {
 .menu-close-button:hover { color: #fff; }
 .menu-close-button svg { width: 32px; height: 32px; }
 
-.main-nav { text-align: center; }
+.main-nav { 
+    text-align: center; 
+    width: 100%; /* Ensure nav takes full width for text-align to work */
+}
 .main-nav a {
     display: block;
     color: #fff;
-    font-size: 48px; /* UPDATED: Even Larger font size */
+    font-size: 48px; 
     font-weight: 800;
     padding: 16px 0;
     transition: transform 0.2s;
-    /* NEW: Drop shadow for text legibility against glass background */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
+    /* UPDATED: Subtle white text shadow for improved contrast (no 2000s vibes!) */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.5); 
 }
 .main-nav a:hover { transform: scale(1.05); }
 
 .menu-footer {
-    /* Ensure the footer stays at the bottom of the scroller */
-    margin-top: 40px; 
+    /* Flex-shrink prevents it from pushing content outside when scrollable */
+    flex-shrink: 0; 
     text-align: center;
-    padding-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8); /* Slightly brighter footer text */
-    flex-shrink: 0;
+    padding: 40px 0 40px 0;
+    color: rgba(255, 255, 255, 0.8); 
+    /* Apply the same subtle white shadow for legibility */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .menu-footer-links {
