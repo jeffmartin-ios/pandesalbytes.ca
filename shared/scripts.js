@@ -53,38 +53,95 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.querySelector('.header');
         const heroSection = document.querySelector('#hero-section');
         const heroPlaceholder = document.querySelector('#hero-placeholder');
-        // Elements below are loaded dynamically, so we must select them after injection.
+        
+        // Dynamic elements loaded via fetch
         const navBar = document.getElementById('nav-bar');
-        const navLogo = document.getElementById('nav-logo');
         const hamburger = document.getElementById('hamburger');
         const menuOverlay = document.getElementById('menu-overlay');
         const closeMenuButton = document.getElementById('close-menu');
+
+        // New elements for title collapsing
+        const collapsibleTitle = document.getElementById('collapsible-title');
+        const navLogo = document.getElementById('nav-logo');
         
-        // This function can only run if the page has a hero section (i.e., index.html)
-        if (heroSection && heroPlaceholder && navBar) {
-            let heroHeight = heroSection.offsetHeight;
+        // This function runs only if on the home page (index.html)
+        if (heroSection && heroPlaceholder && collapsibleTitle && navBar && navLogo) {
+            
+            // 1. Setup initial values (done in next tick to ensure layout is ready)
+            const setupCollapsibleTitle = () => {
+                const navLogoRect = navLogo.getBoundingClientRect();
+                const titleRect = collapsibleTitle.getBoundingClientRect();
+                const heroHeight = heroSection.offsetHeight;
+                
+                // Calculate the final scale factor (from 60px hero title size to 20px nav logo title size)
+                // Sizes are based on CSS defined in styles.css (hero-title is 3.75rem/60px, nav-logo-text is 20px)
+                const targetScale = 20 / 60; // 0.3333
+
+                // Calculate the translation required to move the center of the big title 
+                // to the center of the small title's final position.
+                // We use titleRect.x and titleRect.y for the starting point (relative to viewport)
+                const startX = titleRect.left + (titleRect.width / 2);
+                const startY = titleRect.top + (titleRect.height / 2);
+                
+                // Target position (center of where the PB logo icon is, since that's what navLogo aligns to)
+                // We compensate for the fact that the title scales down to navLogo's size.
+                const targetX = navLogoRect.left + (navLogoRect.width / 2);
+                const targetY = navLogoRect.top + (navLogoRect.height / 2);
+                
+                const translateX = targetX - startX;
+                const translateY = targetY - startY;
+
+                // How much distance we need to scroll to complete the animation (arbitrary value)
+                const scrollThreshold = heroHeight * 0.5; // Complete animation halfway down the hero section
+
+                return { translateX, translateY, targetScale, scrollThreshold, heroHeight };
+            };
+
+            let metrics = setupCollapsibleTitle();
 
             // Recalculate on resize
             window.addEventListener('resize', () => {
-                 heroHeight = heroSection.offsetHeight;
+                 metrics = setupCollapsibleTitle();
+                 // Re-apply scroll listener logic just in case the scroll position is already active
+                 handleScroll(window.scrollY);
             });
             
-            window.addEventListener('scroll', () => {
-                const isScrolledPastHero = window.scrollY > heroHeight - navBar.offsetHeight;
+            // 2. Scroll Handler Logic
+            const handleScroll = (scrollY) => {
+                const { translateX, translateY, targetScale, scrollThreshold, heroHeight } = metrics;
+
+                // Calculate progress (clamped between 0 and 1)
+                let progress = Math.min(1, scrollY / scrollThreshold);
+
+                // Title Transition (Scale and Move)
+                const scale = 1 - (progress * (1 - targetScale));
+                const currentTranslateX = progress * translateX;
+                const currentTranslateY = progress * translateY;
+                
+                collapsibleTitle.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${scale})`;
+                collapsibleTitle.style.opacity = 1 - (progress * 0.2); // Slight fade on the big title
+
+                // Header appearance transition
+                const isScrolledPastHero = scrollY > navBar.offsetHeight;
 
                 if (isScrolledPastHero) {
                     header.classList.add('scrolled');
-                    if(navLogo) navLogo.classList.remove('opacity-0');
                     heroPlaceholder.style.height = `${navBar.offsetHeight}px`; // Set placeholder height
                 } else {
                     header.classList.remove('scrolled');
-                    if(navLogo) navLogo.classList.add('opacity-0');
                     heroPlaceholder.style.height = '0px'; // Reset placeholder
                 }
+            };
+            
+            window.addEventListener('scroll', () => {
+                handleScroll(window.scrollY);
             });
+            
+            // Run on load to set initial state if page is already scrolled
+            handleScroll(window.scrollY); 
         }
         
-        // Menu toggle functionality
+        // Menu toggle functionality (remains unchanged)
         const toggleMenu = () => {
             if (hamburger && menuOverlay) {
                 hamburger.classList.toggle('active');
