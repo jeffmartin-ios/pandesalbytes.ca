@@ -250,25 +250,27 @@ a {
     position: relative; /* Needed for title wrapper positioning */
 }
 
-/* Style for the collapsing title wrapper */
+/* Style for the collapsing title wrapper (now simple title) */
 .collapsible-title-wrapper {
     position: relative;
-    /* Optional: use this if you want the other hero elements to respond to the title's original space, 
-       but for this effect, making the title position absolute is easier for positioning. */
 }
 
 #collapsible-title {
-    /* Ensure the title doesn't take up space in the DOM after the script manipulates it */
+    /* Removed custom transform and opacity for simple header transition */
     position: relative; 
-    transition: transform 0.1s ease-out, opacity 0.1s ease-out; /* Smoother transition */
-    will-change: transform, opacity; /* Performance optimization for animation */
 }
 .hero-title {
-    font-size: 3.75rem; /* 60px - Used as the base size for JS scaling */
+    font-size: 3.75rem; /* 60px */
     font-weight: 800;
     letter-spacing: -0.05em;
     color: var(--primary-text);
 }
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 5rem; 
+    }
+}
+
 .hero-subtitle {
     font-size: 1.75rem;
     font-weight: 600;
@@ -527,9 +529,6 @@ a {
     }
 }
 @media (min-width: 768px) {
-    .hero-title {
-        font-size: 5rem; 
-    }
     .app-grid {
         grid-template-columns: repeat(2, 1fr);
     }
