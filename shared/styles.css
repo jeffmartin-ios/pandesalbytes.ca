@@ -61,7 +61,7 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 50;
+    z-index: 50; /* Header is visible on the main page */
 }
 
 .nav-bar {
@@ -117,7 +117,7 @@ a {
     cursor: pointer;
     background: none;
     border: none;
-    z-index: 50;
+    z-index: 70; /* Increased Z-index to be above the menu overlay */
 }
 
 .hamburger-button span {
@@ -145,7 +145,7 @@ a {
 .menu-overlay {
     position: fixed;
     inset: 0;
-    z-index: 40;
+    z-index: 60; /* NEW: Raised Z-index to cover the nav-bar and create full-screen blur */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease;
@@ -155,7 +155,7 @@ a {
     opacity: 1;
     pointer-events: auto;
     /* UPDATED: Increased opacity using a semi-transparent black base for better contrast */
-    background-color: rgba(0, 0, 0, 0.4); 
+    background-color: rgba(0, 0, 0, 0.5); 
     backdrop-filter: blur(20px); 
     -webkit-backdrop-filter: blur(20px);
 }
@@ -163,23 +163,23 @@ a {
 .menu-content {
     /* Updated to Flexbox for vertical centering */
     display: flex; 
-    flex-direction: column; /* Stacks children vertically */
-    justify-content: center; /* Vertically centers the content */
-    align-items: center; /* Horizontally centers the content */
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
     height: 100%;
-    padding-top: 64px; /* Space for the fixed close button */
+    padding-top: 64px; 
     padding-bottom: 64px;
 }
 
 /* NEW: Scroll container for the menu links (now flex-grow) */
 .menu-scroller {
-    width: 100%; /* Take full width of parent */
-    flex-grow: 1; /* Allows it to take up available vertical space */
-    max-height: 100%; /* Constrain height for scrolling */
-    overflow-y: auto; /* Enable scrolling */
+    width: 100%; 
+    flex-grow: 1; 
+    max-height: 100%; 
+    overflow-y: auto; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers items vertically within the scroll area */
+    justify-content: center; 
     align-items: center;
 }
 
@@ -187,7 +187,7 @@ a {
     position: absolute;
     top: 20px;
     right: 24px;
-    z-index: 50;
+    z-index: 70; /* Ensure this is on top of the overlay */
     color: rgba(255, 255, 255, 0.8);
     background: none;
     border: none;
@@ -198,17 +198,16 @@ a {
 
 .main-nav { 
     text-align: center; 
-    width: 100%; /* Ensure nav takes full width for text-align to work */
+    width: 100%; 
 }
 .main-nav a {
     display: block;
-    color: #fff;
+    color: #fff; /* White text for contrast */
     font-size: 48px; 
     font-weight: 800;
     padding: 16px 0;
     transition: transform 0.2s;
-    /* UPDATED: Subtle white text shadow for improved contrast (no 2000s vibes!) */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.5); 
+    text-shadow: none; /* REMOVED GLOW */
 }
 .main-nav a:hover { transform: scale(1.05); }
 
@@ -217,9 +216,8 @@ a {
     flex-shrink: 0; 
     text-align: center;
     padding: 40px 0 40px 0;
-    color: rgba(255, 255, 255, 0.8); 
-    /* Apply the same subtle white shadow for legibility */
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    color: #fff; /* UPDATED: Pure white for better legibility */
+    text-shadow: none; /* REMOVED GLOW */
 }
 
 .menu-footer-links {
