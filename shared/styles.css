@@ -194,10 +194,12 @@ a {
 .main-nav a {
     display: block;
     color: #fff;
-    font-size: 40px; /* UPDATED: Larger font size */
-    font-weight: bold;
+    font-size: 48px; /* UPDATED: Even Larger font size */
+    font-weight: 800;
     padding: 16px 0;
     transition: transform 0.2s;
+    /* NEW: Drop shadow for text legibility against glass background */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
 }
 .main-nav a:hover { transform: scale(1.05); }
 
