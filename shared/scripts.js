@@ -4,17 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerPlaceholder = document.getElementById('header-placeholder');
         const footerPlaceholder = document.getElementById('footer-placeholder');
 
-        // FIX: Determine base path reliably without relying on document.currentScript.
-        // We assume files are either in the root or one subdirectory deep.
-        const pathname = window.location.pathname;
-        let basePath = 'shared/'; // Default for root page (index.html)
-
-        // If the current page is in a subdirectory (e.g., /about/index.html)
-        // Check if the path has more than one segment (e.g., '/about/')
-        if (pathname.split('/').filter(s => s.length > 0).length > 1) {
-             basePath = '../shared/';
-        }
+        // FIXED: Robustly determine the path to the 'shared' directory regardless of the page depth.
+        // It checks if the current path already ends in 'shared/' or if it needs './shared/' or '../shared/'
+        const currentPath = window.location.pathname;
+        const isRoot = currentPath.endsWith('/') || currentPath.split('/').length <= 2;
+        const basePath = isRoot ? 'shared/' : '../shared/';
         
+        // This is safe to run even if the placeholders are null, but we check before injecting.
+
         try {
             // Fetch and inject header
             const headerResponse = await fetch(`${basePath}header.html`);
@@ -24,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     headerPlaceholder.innerHTML = await headerResponse.text();
                 }
             } else {
-                console.error('Failed to load header');
+                console.error(`Failed to load header from ${basePath}header.html`);
             }
 
             // Fetch and inject footer
@@ -33,12 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
                  if (footerResponse.ok) {
                     footerPlaceholder.innerHTML = await footerResponse.text();
                 } else {
-                    console.error('Failed to load footer');
+                    console.error(`Failed to load footer from ${basePath}footer.html`);
                 }
             }
 
             // After components are loaded, initialize the interactive elements
-            initializeHeader();
+            // We must wait a moment to ensure the dynamically loaded DOM elements are available
+            setTimeout(initializeHeader, 10); 
 
         } catch (error) {
             console.error('Error loading components:', error);
@@ -57,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const menuOverlay = document.getElementById('menu-overlay');
         const closeMenuButton = document.getElementById('close-menu');
         
-        // This function can only run if the page has a hero section
+        // This function can only run if the page has a hero section (i.e., index.html)
         if (heroSection && heroPlaceholder && navBar) {
             let heroHeight = heroSection.offsetHeight;
 
