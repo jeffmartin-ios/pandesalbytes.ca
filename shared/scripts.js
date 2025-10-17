@@ -4,10 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerPlaceholder = document.getElementById('header-placeholder');
         const footerPlaceholder = document.getElementById('footer-placeholder');
 
-        // Robustly determine the path to the 'shared' directory.
-        const scriptSrc = document.currentScript.src;
-        const basePath = scriptSrc.substring(0, scriptSrc.lastIndexOf('/') + 1);
+        // FIX: Determine base path reliably without relying on document.currentScript.
+        // We assume files are either in the root or one subdirectory deep.
+        const pathname = window.location.pathname;
+        let basePath = 'shared/'; // Default for root page (index.html)
 
+        // If the current page is in a subdirectory (e.g., /about/index.html)
+        // Check if the path has more than one segment (e.g., '/about/')
+        if (pathname.split('/').filter(s => s.length > 0).length > 1) {
+             basePath = '../shared/';
+        }
+        
         try {
             // Fetch and inject header
             const headerResponse = await fetch(`${basePath}header.html`);
@@ -101,4 +108,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start the process
     loadComponents();
 });
-
