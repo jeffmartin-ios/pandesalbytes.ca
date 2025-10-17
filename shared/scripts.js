@@ -4,11 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerPlaceholder = document.getElementById('header-placeholder');
         const footerPlaceholder = document.getElementById('footer-placeholder');
 
-        // FIXED: Robustly determine the path to the 'shared' directory regardless of the page depth.
-        // It checks if the current path already ends in 'shared/' or if it needs './shared/' or '../shared/'
+        // FIXED: Robustly determine the relative path to the 'shared' directory.
         const currentPath = window.location.pathname;
-        const isRoot = currentPath.endsWith('/') || currentPath.split('/').length <= 2;
-        const basePath = isRoot ? 'shared/' : '../shared/';
+
+        // Determine if the current page is not at the root level.
+        // - currentPath.includes('/', 1) checks for paths like /about/index.html
+        // - (currentPath.endsWith('/') && currentPath.length > 1) checks for paths like /about/
+        const isNested = currentPath.includes('/', 1) || (currentPath.endsWith('/') && currentPath.length > 1);
+
+        // If the page is nested, we need to go up one directory (../). Otherwise, it's local (shared/).
+        const basePath = isNested ? '../shared/' : 'shared/';
         
         // This is safe to run even if the placeholders are null, but we check before injecting.
 
