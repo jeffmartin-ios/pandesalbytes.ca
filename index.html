@@ -4,25 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pandesal Bytes - iOS App Development</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared/styles.css">
-    <style>
-        /* Page-specific styles */
-        .header.scrolled #nav-bar {
-            border-bottom-left-radius: 1.5rem; /* 24px */
-            border-bottom-right-radius: 1.5rem; /* 24px */
-        }
-        .hamburger-button { /* ... styles for hamburger ... */ }
-        #menu-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-    </style>
 </head>
-<body class="bg-gray-100 text-gray-900 antialiased">
+<body>
 
     <!-- This div will be populated by shared/header.html -->
     <div id="header-placeholder"></div>
@@ -31,19 +18,53 @@
     <div id="hero-placeholder"></div>
 
     <!-- Hero Section -->
-    <section id="hero-section" class="pt-24 pb-12 text-center">
-        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter">Pandesal Bytes</h1>
+    <section id="hero-section" class="hero-section">
+        <h1 class="hero-title">Pandesal Bytes</h1>
     </section>
 
-    <main class="container mx-auto px-6 py-12">
-        <!-- ... your app grid and other main content ... -->
+    <main class="container">
+        <!-- App Grid Section -->
+        <section id="apps" class="page-section">
+            <div class="app-grid">
+                <!-- App Card: Spent Today -->
+                <a href="spent-today/" class="app-card">
+                    <div class="app-card-content glass-effect">
+                        <div>
+                            <div class="app-card-header">
+                                <div class="app-icon-placeholder"></div>
+                                <div>
+                                    <h2 class="app-card-title">Spent Today</h2>
+                                    <p class="app-card-description">Simple, beautiful expense tracking for your daily needs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-card-cta">
+                            <span class="app-store-button">Download on the App Store</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- App Card: More coming soon! -->
+                <div class="placeholder-card">
+                    <p>More coming soon!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section-home">
+            <h2 class="section-title">Crafting Apps with Care</h2>
+            <p class="section-subtitle">
+                Pandesal Bytes is a small, independent studio focused on building simple, useful, and delightful applications for iOS. We believe in software that respects your time and privacy.
+            </p>
+        </section>
     </main>
 
     <!-- This div will be populated by shared/footer.html -->
     <div id="footer-placeholder"></div>
     
     <!-- Load the shared script -->
-    <script src="shared/scripts.js"></script>
+    <script src="shared/scripts.js" defer></script>
 
 </body>
 </html>
