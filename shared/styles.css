@@ -315,6 +315,12 @@ a {
     border-radius: 16px;
     flex-shrink: 0;
 }
+.app-icon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 .app-card-title {
     font-size: 30px;
     font-weight: bold;
@@ -516,6 +522,13 @@ a {
     align-items: center;
     gap: 8px;
     font-size: 14px;
+}
+
+.app-screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the screen without stretching */
+    display: block;
 }
 
 /* --- Responsive Design --- */
