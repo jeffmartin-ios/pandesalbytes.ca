@@ -1,16 +1,12 @@
-/* --- Global Styles & Variables (Dark Mode) --- */
+/* --- Global Styles & Variables --- */
 :root {
-    /* Dark Mode Palette - Deep Forest Green and Bronze Accent */
-    --primary-text: #e5e7eb; /* Light gray for main text */
-    --secondary-text: #9ca3af; /* Gray for secondary text/description */
-    --background-color: #0d170d; /* Deep Forest Charcoal */
-    --surface-color: #121c12; /* Slightly lighter surface for contrast */
-    --accent-color: #b49463; /* Warm Bronze/Gold Accent */
-    --font-family: 'Inter', sans-serif;
-    
-    /* Dark Mode Gradient Background for Glass Effect Contrast */
-    --glass-bg-start: #1b381b; /* Dark Green */
-    --glass-bg-end: #0c170c;   /* Very Dark Green */
+    --primary-text: #1f2937; /* Dark Gray */
+    --secondary-text: #6b7280; /* Medium Gray */
+    --background-color: #f9fafb; /* Off-white */
+    --surface-color: #ffffff; /* Pure White for cards */
+    --accent-color: #4f46e5; /* Indigo */
+    --border-color: #e5e7eb; /* Light Gray for borders */
+    --font-family: 'Inter', 'Noto Sans Thai', 'Noto Sans SC', 'Noto Sans TC', 'Noto Sans JP', sans-serif;
 }
 
 /* Basic Reset & Body */
@@ -20,11 +16,13 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-family);
-    /* Dark mode fixed gradient background */
-    background: linear-gradient(135deg, var(--glass-bg-start) 0%, var(--glass-bg-end) 100%);
-    background-attachment: fixed; 
+    background-color: var(--background-color);
     color: var(--primary-text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -32,8 +30,13 @@ body {
 }
 
 a {
-    color: inherit;
+    color: var(--accent-color);
     text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #3730a3; /* Darker Indigo */
 }
 
 /* --- Layout --- */
@@ -43,37 +46,59 @@ a {
     padding: 0 24px;
 }
 
-/* --- Glass Effect (FROSTED Look for Dark Mode) --- */
-.glass-effect {
-    /* Very light opacity on a dark background for the frosted effect */
-    background-color: rgba(255, 255, 255, 0.05); 
-    /* Maxed blur for obvious frosted effect */
-    backdrop-filter: blur(30px); 
-    -webkit-backdrop-filter: blur(30px);
-    /* Subtle light border */
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    /* Softer, larger shadow */
-    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.3); 
+/* --- Shared Component Styles --- */
+.page-section {
+    padding: 64px 0;
 }
 
+.text-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
 
-/* --- Header & Navigation (from shared/header.html) --- */
+.section-title {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.025em;
+    color: var(--primary-text);
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: var(--secondary-text);
+    line-height: 1.7;
+}
+
+.card-style {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+}
+
+.card-style:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.04);
+}
+
+/* --- Header & Navigation --- */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 50;
+    background-color: rgba(249, 250, 251, 0.8); /* Semi-transparent off-white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .nav-bar {
     transition: all 0.3s ease-in-out;
-}
-
-/* Scrolled state for the header on the homepage */
-.header.scrolled .nav-bar {
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
 }
 
 .nav-container {
@@ -87,15 +112,14 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Removed opacity: 0; to make it visible by default */
-    transition: opacity 0.3s ease-in-out;
+    color: var(--primary-text);
 }
 
 .nav-logo-icon {
     width: 28px;
     height: 28px;
     background-color: var(--accent-color);
-    color: var(--background-color);
+    color: #fff;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -109,8 +133,79 @@ a {
     font-weight: bold;
     font-size: 20px;
     white-space: nowrap;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Language Selector */
+.lang-selector {
+    position: relative;
+    z-index: 55;
+}
+
+.lang-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--secondary-text);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.lang-button:hover {
     color: var(--primary-text);
 }
+
+.lang-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: 140%;
+    right: 0;
+    min-width: 140px;
+    border-radius: 12px;
+    padding: 8px;
+    overflow: hidden;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.04);
+}
+
+.lang-selector.active .lang-dropdown {
+    display: block;
+}
+
+.lang-option {
+    display: block;
+    padding: 8px 12px;
+    color: var(--primary-text);
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    color: var(--primary-text);
+}
+
+.lang-option:hover {
+    background-color: var(--background-color);
+}
+
+/* Language-specific fonts for the dropdown */
+.lang-option[data-lang="ja"] { font-family: 'Noto Sans JP', sans-serif; }
+.lang-option[data-lang="zh-CN"] { font-family: 'Noto Sans SC', sans-serif; }
+.lang-option[data-lang="zh-TW"] { font-family: 'Noto Sans TC', sans-serif; }
+.lang-option[data-lang="th"] { font-family: 'Noto Sans Thai', sans-serif; }
+
 
 /* Hamburger Menu */
 .hamburger-button {
@@ -123,39 +218,24 @@ a {
     z-index: 70; 
 }
 
-/* Elegant Hamburger Animation */
 .hamburger-button span {
     display: block;
     position: absolute;
-    height: 3px;
+    height: 2px;
     width: 100%;
     background: var(--primary-text);
     border-radius: 9px;
-    opacity: 1;
     left: 0;
-    transform: rotate(0deg);
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background 0.3s ease;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .hamburger-button span.top { top: 0px; }
-.hamburger-button span.middle { top: 8px; }
-.hamburger-button span.bottom { top: 16px; }
+.hamburger-button span.middle { top: 9px; }
+.hamburger-button span.bottom { top: 18px; }
 
-.hamburger-button.active span {
-    background: #fff; /* White lines when open for contrast against the dark overlay */
-}
-.hamburger-button.active span.top { 
-    transform: rotate(45deg); 
-    top: 8px; 
-}
-.hamburger-button.active span.middle { 
-    opacity: 0;
-    transform: translateX(10px); 
-}
-.hamburger-button.active span.bottom { 
-    transform: rotate(-45deg); 
-    top: 8px; 
-}
+.hamburger-button.active span.top { transform: rotate(45deg); top: 9px; }
+.hamburger-button.active span.middle { opacity: 0; }
+.hamburger-button.active span.bottom { transform: rotate(-45deg); top: 9px; }
 
 /* Menu Overlay */
 .menu-overlay {
@@ -164,20 +244,42 @@ a {
     z-index: 60; 
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
+    /* [UPDATED] Translucent background with blur */
+    background-color: rgba(249, 250, 251, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .menu-overlay.active {
     opacity: 1;
     pointer-events: auto;
-    /* Semi-transparent black base for better white text legibility over glass */
-    background-color: rgba(0, 0, 0, 0.5); 
-    backdrop-filter: blur(20px); 
-    -webkit-backdrop-filter: blur(20px);
+}
+
+/* [NEW] Close Button for Menu */
+.menu-close-button {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 70;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--secondary-text);
+    transition: color 0.2s, transform 0.2s;
+}
+
+.menu-close-button:hover {
+    color: var(--primary-text);
+    transform: scale(1.1);
+}
+
+.menu-close-button svg {
+    width: 32px;
+    height: 32px;
 }
 
 .menu-content {
-    /* Flexbox for vertical centering */
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
@@ -190,166 +292,111 @@ a {
 .menu-scroller {
     width: 100%; 
     flex-grow: 1; 
-    max-height: 100%; 
-    overflow-y: auto; 
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
 }
 
-.menu-close-button {
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    z-index: 70; 
-    color: rgba(255, 255, 255, 0.8);
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-.menu-close-button:hover { color: #fff; }
-.menu-close-button svg { width: 32px; height: 32px; }
-
-.main-nav { 
-    text-align: center; 
-    width: 100%; 
-}
 .main-nav a {
     display: block;
-    color: #fff; 
-    font-size: 48px; 
-    font-weight: 800;
+    color: var(--primary-text); 
+    font-size: 36px; 
+    font-weight: 700;
     padding: 16px 0;
-    transition: transform 0.2s;
+    transition: transform 0.2s, color 0.2s;
 }
-.main-nav a:hover { transform: scale(1.05); }
+.main-nav a:hover { color: var(--accent-color); }
 
 .menu-footer {
     flex-shrink: 0; 
     text-align: center;
-    padding: 40px 0 40px 0;
-    color: #fff; 
+    padding: 40px 0 0 0;
+    color: var(--secondary-text);
 }
-
 .menu-footer-links {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     gap: 16px;
-    font-size: 14px; /* Ensure smaller text is still white */
+    font-size: 14px;
 }
 
-.menu-footer-links a:hover { text-decoration: underline; }
-
-/* --- Home Page Specific Styles (index.html) --- */
+/* --- Home Page --- */
 .hero-section {
-    padding-top: 96px; 
-    padding-bottom: 48px; 
+    padding-top: 128px; 
+    padding-bottom: 64px; 
     text-align: center;
-    position: relative; /* Needed for title wrapper positioning */
 }
 
-/* Style for the collapsing title wrapper (now simple title) */
-.collapsible-title-wrapper {
-    position: relative;
-}
-
-#collapsible-title {
-    /* Removed custom transform and opacity for simple header transition */
-    position: relative; 
-}
 .hero-title {
     font-size: 3.75rem; /* 60px */
     font-weight: 800;
     letter-spacing: -0.05em;
     color: var(--primary-text);
 }
-@media (min-width: 768px) {
-    .hero-title {
-        font-size: 5rem; 
-    }
-}
 
 .hero-subtitle {
-    font-size: 1.75rem;
-    font-weight: 600;
-    letter-spacing: -0.05em;
-    color: var(--secondary-text)
+    font-size: 1.25rem; /* 20px */
+    max-width: 600px;
+    margin: 16px auto 0;
+    color: var(--secondary-text);
 }
-.page-section {
-    padding: 48px 0;
-}
+
 .app-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
 }
+
 .app-card {
     display: block;
+    color: var(--primary-text);
 }
+
 .app-card-content {
     padding: 32px;
     height: 100%;
-    border-radius: 24px;
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--surface-color); /* Use surface color for the card background when not glass */
 }
-.app-card:hover .app-card-content {
-    transform: scale(1.02);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -2px rgba(0,0,0,0.2);
-}
+
 .app-card-header {
     display: flex;
     align-items: flex-start;
     gap: 16px;
 }
+
 .app-icon-placeholder {
     width: 64px;
     height: 64px;
-    background-color: var(--accent-color);
-    color: var(--background-color);
     border-radius: 16px;
     flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
 }
-.app-icon-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.app-card-title {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 4px;
-    color: var(--primary-text);
-}
-.app-card-description {
-    color: var(--secondary-text);
-}
+.app-icon-image { width: 100%; height: 100%; display: block; }
+.app-card-title { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.app-card-description { color: var(--secondary-text); }
+
 .app-card-cta {
     margin-top: 24px;
     text-align: right;
 }
-.app-store-button {
+
+.cta-button {
     background-color: var(--accent-color);
-    color: var(--background-color);
-    padding: 8px 20px;
+    color: #fff;
+    padding: 10px 20px;
     border-radius: 9999px;
     font-weight: 600;
     transition: background-color 0.2s;
     display: inline-block;
 }
-.app-store-button:hover {
-    background-color: #a08457; /* Slightly darker hover color for accent */
-}
+.cta-button:hover { background-color: #3730a3; }
 
 .placeholder-card {
-    background-color: var(--surface-color);
-    border: 2px dashed rgba(156, 163, 175, 0.5);
+    border: 2px dashed var(--border-color);
     border-radius: 24px;
     padding: 32px;
     height: 100%;
@@ -361,70 +408,19 @@ a {
     font-size: 18px;
 }
 
-.about-section-home {
-    padding: 96px 0;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-.section-title {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 16px;
-    color: var(--primary-text);
-}
-.section-subtitle {
-    font-size: 18px;
-    color: var(--secondary-text);
-}
-
-/* --- About Page Specific Styles (about/index.html) --- */
-.page-header {
-    text-align: center;
-    margin-bottom: 48px;
-    color: var(--primary-text);
-}
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-.about-content p, .about-content .commitment-box {
-    margin-bottom: 32px;
-}
-.about-content p {
-    font-size: 18px;
-    color: var(--secondary-text);
-    line-height: 1.7;
-}
 .commitment-box {
-    border-radius: 16px;
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Matches glass effect border */
+    padding: 32px;
 }
-.commitment-box h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: var(--primary-text);
-}
-
-/* [NEW] Commitment Card Grid styles for modernization */
 .commitment-card-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
     margin-top: 24px;
 }
 .commitment-card {
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    padding: 16px;
-    border-radius: 12px;
-    transition: background-color 0.3s;
-}
-.commitment-card:hover {
-    background-color: rgba(255, 255, 255, 0.05); /* Subtle dark mode hover effect */
 }
 .card-icon {
     flex-shrink: 0;
@@ -432,124 +428,106 @@ a {
     height: 32px;
     color: var(--accent-color);
 }
-.commitment-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: var(--primary-text);
-}
-.commitment-card p {
-    font-size: 16px;
+.commitment-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.commitment-card p { font-size: 16px; color: var(--secondary-text); margin: 0; }
+
+/* --- Footer --- */
+.footer {
+    padding: 48px 0;
+    margin-top: 32px;
+    text-align: center;
     color: var(--secondary-text);
-    margin-bottom: 0; 
+    border-top: 1px solid var(--border-color);
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
 }
 
-
-/* --- Spent Today Page Specific Styles (spent-today/index.html) --- */
-.hero-carousel {
-    padding: 64px 0;
-    background-color: transparent;
-}
+/* --- Spent Today Page --- */
 .hero-carousel-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 32px;
 }
-.phone-frame { width: 300px; height: 620px; background-color: var(--surface-color); border-radius: 40px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); padding: 12px; position: relative; margin-bottom: 32px; }
-.phone-screen { background-color: #21262d; height: 100%; width: 100%; border-radius: 28px; overflow: hidden; position: relative; }
+.phone-frame { 
+    width: 300px; 
+    height: 620px; 
+    background-color: var(--surface-color); 
+    border-radius: 40px; 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
+    border: 1px solid var(--border-color);
+    padding: 12px; 
+    position: relative; 
+    margin-bottom: 32px; 
+}
+.phone-screen { 
+    background-color: #000; 
+    height: 100%; 
+    width: 100%; 
+    border-radius: 28px; 
+    overflow: hidden; 
+    position: relative; 
+}
 .carousel-track { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
 .carousel-slide { flex: 0 0 100%; height: 100%; }
-.screenshot-placeholder { width: 100%; height: 100%; background-color: #374151; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #a1a1aa; }
+.app-screenshot { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
-.carousel-dot { width: 8px; height: 8px; border-radius: 50%; transition: background-color 0.2s; background-color: var(--secondary-text); border: none; cursor: pointer; }
+.carousel-dot { 
+    width: 8px; 
+    height: 8px; 
+    border-radius: 50%; 
+    transition: background-color 0.2s; 
+    background-color: var(--border-color); 
+    border: none; 
+    cursor: pointer; 
+}
 .carousel-dot.active { background-color: var(--primary-text); }
+.app-store-button {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 12px 32px;
+    font-size: 18px;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+.app-store-button:hover { background-color: #3730a3; }
 
 .features-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
     text-align: center;
-}
-.feature-item h3 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--primary-text);
-}
-.feature-item p {
-    color: var(--secondary-text);
-}
-
-.faq-section {
-    /* Uses a glass effect on the surface color for depth */
-    background-color: rgba(18, 28, 18, 0.8); /* Adjusted to match new surface color */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-}
-.faq-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
-.faq-item {
-    margin-bottom: 24px;
-}
-.faq-item h3 {
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 4px;
-    color: var(--primary-text);
-}
-.faq-item p {
-    color: var(--secondary-text);
-}
+.feature-item h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
 
-
-/* --- Footer --- */
-.footer {
-    padding: 32px 0;
-    margin-top: 16px;
-    text-align: center;
-    color: var(--secondary-text);
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Light border for dark mode separation */
+.faq-section {
+    background-color: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-}
-
-.app-screenshot {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures image covers the screen without stretching */
-    display: block;
-}
+.faq-content { max-width: 800px; margin: 0 auto; }
+.faq-item { margin-bottom: 24px; }
+.faq-item:last-child { margin-bottom: 0; }
+.faq-item h3 { font-weight: 600; font-size: 18px; margin-bottom: 4px; }
+.faq-item p { color: var(--secondary-text); }
 
 /* --- Responsive Design --- */
 @media (min-width: 640px) {
-    .footer-content {
-        flex-direction: row;
-        gap: 16px;
-    }
-    .footer-separator {
-        display: inline;
-    }
+    .footer-content { flex-direction: row; justify-content: center; gap: 16px; }
+    .footer-separator { display: inline; }
+    .commitment-card-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero-title { font-size: 4.5rem; }
 }
 @media (min-width: 768px) {
-    .app-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .features-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    /* [NEW] Commitments grid */
-    .commitment-card-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .app-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
