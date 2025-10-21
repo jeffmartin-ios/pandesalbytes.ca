@@ -27,6 +27,7 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s, color 0.3s; /* Smooth theme transition */
 }
 
 a {
@@ -95,6 +96,7 @@ a:hover {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .nav-bar {
@@ -244,8 +246,7 @@ a:hover {
     z-index: 60; 
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
-    /* [UPDATED] Translucent background with blur */
+    transition: opacity 0.3s ease, background-color 0.3s;
     background-color: rgba(249, 250, 251, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -256,7 +257,7 @@ a:hover {
     pointer-events: auto;
 }
 
-/* [NEW] Close Button for Menu */
+/* Close Button for Menu */
 .menu-close-button {
     position: absolute;
     top: 24px;
@@ -529,5 +530,38 @@ a:hover {
 }
 @media (min-width: 768px) {
     .app-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- [NEW] Dark Mode --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-text: #f9fafb;     /* Light Gray / Off-white */
+        --secondary-text: #9ca3af;   /* Lighter Gray */
+        --background-color: #111827; /* Dark Blue-Gray */
+        --surface-color: #1f2937;    /* Lighter Blue-Gray for cards */
+        --border-color: #374151;     /* Darker Gray for borders */
+        --accent-color: #6366f1;     /* A slightly lighter Indigo for better contrast */
+    }
+
+    .header, .menu-overlay {
+        background-color: rgba(17, 24, 39, 0.8); /* Dark, translucent background */
+    }
+
+    .card-style:hover {
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1);
+    }
+
+    a:hover {
+        color: #4338ca; /* Darker Indigo for hover on dark bg */
+    }
+
+    .app-store-button:hover, .cta-button:hover {
+        background-color: #4338ca;
+    }
+
+    .phone-screen {
+        /* In dark mode, a dark gray screen looks better than pure black */
+        background-color: #111827;
+    }
 }
 
