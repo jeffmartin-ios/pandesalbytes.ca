@@ -14,10 +14,17 @@
     <!-- This div will be populated by shared/header.html -->
     <div id="header-placeholder"></div>
 
+    <!-- This div is a placeholder to prevent content from jumping when the header becomes fixed -->
+    <div id="hero-placeholder" style="height: 64px;"></div>
+
     <!-- Hero Section -->
-    <section id="hero-section" class="hero-section">
-        <h1 class="hero-title" data-i18n-key="hero.title">Pandesal Bytes</h1>
-        <p class="hero-subtitle" data-i18n-key="hero.subtitle">Simple, useful, and delightful apps for iOS.</p>
+    <section class="hero-section">
+        <div class="container text-section">
+            <h1 class="hero-title" data-i18n-key="hero.title">Pandesal Bytes</h1>
+            <p class="hero-subtitle" data-i18n-key="hero.subtitle">
+                Simple, honestly crafted software for iOS. We build minimal, focused apps that we genuinely use ourselves.
+            </p>
+        </div>
     </section>
 
     <main class="container">
@@ -25,8 +32,8 @@
         <section id="apps" class="page-section">
             <div class="app-grid">
                 <!-- App Card: Spent Today -->
-                <a href="spent-today/" class="app-card">
-                    <div class="app-card-content card-style">
+                <a href="spent-today/" class="app-card card-style">
+                    <div class="app-card-content">
                         <div>
                             <div class="app-card-header">
                                 <div class="app-icon-placeholder">
@@ -39,30 +46,44 @@
                             </div>
                         </div>
                         <div class="app-card-cta">
-                            <span class="cta-button" data-i18n-key="app.view">View App</span>
+                            <span class="cta-button" data-i18n-key="app.view-app">View App</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- App Card: More coming soon! -->
-                <div class="placeholder-card">
-                    <p data-i18n-key="app.coming-soon">More coming soon!</p>
+                <!-- [NEW] App Card: Pattern Projects -->
+                <div class="app-card card-style">
+                    <div class="app-card-content">
+                        <div>
+                            <div class="app-card-header">
+                                <div class="app-icon-placeholder">
+                                    <img src="assets/stitch/icon.png" alt="Spent Today App Icon" class="app-icon-image">
+                                </div>
+                                <div>
+                                    <h2 class="app-card-title" data-i18n-key="app.pattern-projects.title">Pattern Projects</h2>
+                                    <p class="app-card-description" data-i18n-key="app.pattern-projects.description">Save and track your sewing, knitting, and other craft projects.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-card-cta">
+                            <span class="cta-button cta-button-disabled" data-i18n-key="app.coming-soon">Coming Soon</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section class="page-section text-section">
+        <section id="about" class="page-section text-section">
             <h2 class="section-title" data-i18n-key="about.title">Crafted with Care, Built for Focus.</h2>
-            <p class="section-subtitle" data-i18n-key="about.body">
-                Based in Toronto, Canada, Pandesal Bytes is an independent studio with a simple philosophy: we build minimal, focused apps that we genuinely use ourselves. In a world of digital clutter, we believe in creating tools that are not just functional, but also a pleasure to use.
+            <p class="section-subtitle" data-i18n-key="about.subtitle">
+                Based in Toronto, we believe in creating tools that are not just functional, but a pleasure to use. Our approach is straightforward: we identify a personal need, craft a beautiful solution, and polish it until it feels just right.
             </p>
         </section>
-        
+
         <!-- Commitment Section -->
         <section class="page-section">
-             <div class="commitment-box card-style">
-                <h2 class="section-title" style="font-size: 24px; text-align: left;" data-i18n-key="commitment.title">Our Commitment</h2>
+            <div class="container commitment-box">
                 <div class="commitment-card-grid">
                     <!-- Card 1: Privacy First -->
                     <div class="commitment-card">
@@ -73,7 +94,7 @@
                         </div>
                         <div>
                             <h3 data-i18n-key="commitment.privacy.title">Privacy First</h3>
-                            <p data-i18n-key="commitment.privacy.body">We build our apps to be private by design. We don't collect or sell your personal data. Ever.</p>
+                            <p data-i18n-key="commitment.privacy.description">We build our apps to be private by design. We don't collect or sell your personal data. Ever.</p>
                         </div>
                     </div>
                     <!-- Card 2: No Distractions -->
@@ -85,7 +106,7 @@
                         </div>
                         <div>
                             <h3 data-i18n-key="commitment.distractions.title">No Distractions</h3>
-                            <p data-i18n-key="commitment.distractions.body">You won't find ads, trackers, or unnecessary notifications in our software.</p>
+                            <p data-i18n-key="commitment.distractions.description">You won't find ads, trackers, or unnecessary notifications in our software.</p>
                         </div>
                     </div>
                     <!-- Card 3: Built to Last -->
@@ -97,7 +118,7 @@
                         </div>
                         <div>
                             <h3 data-i18n-key="commitment.longevity.title">Built to Last</h3>
-                            <p data-i18n-key="commitment.longevity.body">We focus on quality and long-term support, ensuring our apps remain reliable for years to come.</p>
+                            <p data-i18n-key="commitment.longevity.description">We focus on quality and long-term support, ensuring our apps remain reliable and useful for years to come.</p>
                         </div>
                     </div>
                     <!-- Card 4: Ditch the Subscriptions -->
@@ -108,20 +129,12 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 data-i18n-key="commitment.ownership.title">Own Your Apps</h3>
-                            <p data-i18n-key="commitment.ownership.body">Premium access is a one-time purchase. We're not fans of subscriptions, so we'll never ask for one.</p>
+                            <h3 data-i18n-key="commitment.subscriptions.title">Own Your Apps</h3>
+                            <p data-i18n-key="commitment.subscriptions.description">Our apps are free to use with powerful core features. Premium access is just a one-time purchase away—no subscriptions.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Pandesal Definition Section -->
-        <section class="page-section text-section">
-            <h3 class="section-title" style="font-size: 24px;" data-i18n-key="pandesal.title">What is a 'Pandesal'?</h3>
-            <p class="section-subtitle" data-i18n-key="pandesal.body">
-                It's a slightly sweet, beloved breakfast roll from the Philippines. The name reflects our aim: to create simple, comforting, and essential digital 'bites' (bytes) that are a delightful start to your day.
-            </p>
         </section>
 
     </main>

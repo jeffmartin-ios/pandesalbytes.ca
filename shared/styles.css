@@ -375,7 +375,11 @@ a:hover {
     flex-shrink: 0;
     overflow: hidden;
     border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .app-icon-image { width: 100%; height: 100%; display: block; }
 .app-card-title { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
 .app-card-description { color: var(--secondary-text); }
@@ -395,6 +399,14 @@ a:hover {
     display: inline-block;
 }
 .cta-button:hover { background-color: #3730a3; }
+
+/* [NEW] Disabled button style */
+.cta-button-disabled {
+    background-color: #e5e7eb; /* Light Gray */
+    color: #6b7280; /* Medium Gray */
+    pointer-events: none; /* Make it unclickable */
+    cursor: default;
+}
 
 .placeholder-card {
     border: 2px dashed var(--border-color);
@@ -532,7 +544,7 @@ a:hover {
     .app-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* --- [NEW] Dark Mode --- */
+/* --- Dark Mode --- */
 @media (prefers-color-scheme: dark) {
     :root {
         --primary-text: #f9fafb;     /* Light Gray / Off-white */
@@ -562,6 +574,16 @@ a:hover {
     .phone-screen {
         /* In dark mode, a dark gray screen looks better than pure black */
         background-color: #111827;
+    }
+
+    /* [NEW] Dark mode for disabled button and icon */
+    .cta-button-disabled {
+        background-color: #374151;
+        color: #9ca3af;
+    }
+    .pattern-projects-icon {
+        background-color: #064e3b; /* Darker Green */
+        color: #a7f3d0; /* Lighter Green */
     }
 }
 
