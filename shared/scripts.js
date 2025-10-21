@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadTranslations(lang) {
         // Determine the correct path to the lang folder
         const currentPath = window.location.pathname;
-        const isNested = currentPath.includes('/spent-today/') || currentPath.includes('/privacy/');
+        // [FIX] Use startsWith for a more robust check that handles URLs with or without trailing slashes.
+        const isNested = currentPath.startsWith('/spent-today') || currentPath.startsWith('/privacy');
         const basePath = isNested ? '../' : '';
 
         try {
@@ -39,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const footerPlaceholder = document.getElementById('footer-placeholder');
 
         const currentPath = window.location.pathname;
-        const isNested = currentPath.includes('/spent-today/') || currentPath.includes('/privacy/');
+        // [FIX] Use startsWith for a more robust check.
+        const isNested = currentPath.startsWith('/spent-today') || currentPath.startsWith('/privacy');
         const basePath = isNested ? '../shared/' : 'shared/';
         
         try {
