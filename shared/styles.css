@@ -550,6 +550,52 @@ a:hover {
 .faq-item h3 { font-weight: 600; font-size: 18px; margin-bottom: 4px; }
 .faq-item p { color: var(--secondary-text); }
 
+/* [NEW] Feature Showcase for App Pages */
+.feature-showcase {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first: single column */
+    align-items: center;
+    overflow: hidden; /* To keep rounded corners on image */
+    padding: 0;
+}
+
+.feature-showcase-text {
+    padding: 32px;
+}
+
+.feature-showcase-text h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-text);
+}
+
+.feature-showcase-text p {
+    color: var(--secondary-text);
+    margin-bottom: 24px;
+}
+
+.feature-showcase-text p:last-child {
+    margin-bottom: 0;
+}
+
+.feature-showcase-image-wrapper {
+    background-color: var(--background-color); /* Subtle bg for image */
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.feature-showcase-image {
+    width: 100%;
+    max-width: 300px; /* Control max size */
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
 /* --- Responsive Design --- */
 @media (min-width: 640px) {
     .footer-content { flex-direction: row; justify-content: center; gap: 16px; }
@@ -560,6 +606,23 @@ a:hover {
 }
 @media (min-width: 768px) {
     .app-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* [NEW] Feature showcase for desktop */
+    .feature-showcase {
+        grid-template-columns: 1fr 1fr; /* 2 columns on desktop */
+        padding: 0; /* Card has its own padding */
+    }
+
+    /* [NEW] Put image on the right for the first showcase */
+    .feature-showcase-image-wrapper {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    .feature-showcase-text {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        padding: 48px;
+    }
 }
 
 /* --- Dark Mode --- */
@@ -612,5 +675,13 @@ a:hover {
     .camera-pouch-icon {
         background-color: #334155; /* Dark Gray/Blue */
         color: #e2e8f0; /* Light Gray */
+    }
+
+    /* [NEW] Dark mode for feature showcase */
+    .feature-showcase-image-wrapper {
+        background-color: #111827; /* Darker bg */
+    }
+    .feature-showcase-image {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 }
