@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // [MODIFIED] Added new app paths to the check
         const isNested = currentPath.startsWith('/spent-today') || 
                          currentPath.startsWith('/privacy') || 
-                         currentPath.startsWith('/inventory') || 
-                         currentPath.startsWith('/camerapouch');
+                         currentPath.startsWith('/my-inventory-stack') || 
+                         currentPath.startsWith('/camera-pouch');
         const basePath = isNested ? '../' : '';
 
         try {
