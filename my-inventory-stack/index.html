@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Inventory Stack - Inventory Management</title>
+    
+    <!-- Smart App Banner for iOS -->
+    <meta name="apple-itunes-app" content="app-id=6755137430">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+
+    <!-- This div will be populated by ../shared/header.html -->
+    <div id="header-placeholder"></div>
+    
+    <!-- A simple spacer for the fixed header -->
+    <div style="height: 64px;"></div>
+
+    <main>
+        <!-- Carousel Hero -->
+        <section class="hero-carousel hero-section">
+            <div class="container">
+                <h1 class="hero-title" data-i18n-key="inv.hero.title">My Inventory Stack</h1>
+                <h3 class="hero-subtitle" data-i18n-key="inv.hero.subtitle">Smart Inventory & Business Tracking</h3>
+                
+                <div class="hero-carousel-wrapper">
+                    <!-- Phone Frame -->
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="../assets/fukuro/1-dashboard-home.png" alt="Inventory App Screenshot 1" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/fukuro/2-inventory.png" alt="Inventory App Screenshot 2" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/fukuro/3-itemdetail.png" alt="Inventory App Screenshot 3" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/fukuro/4-business-home.png" alt="Inventory App Screenshot 4" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/fukuro/5-business-insights.png" alt="Inventory App Screenshot 5" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/fukuro/6-business-suppliers.png" alt="Inventory App Screenshot 6" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/fukuro/7-business-sales.png" alt="Inventory App Screenshot 7" class="app-screenshot">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Carousel Dots -->
+                    <div id="carousel-dots" class="carousel-dots"></div>
+                    <!-- CTA Button -->
+                    <a href="https://apps.apple.com/us/app/my-inventory-stack/id6755137430" target="_blank" rel="noopener" class="app-store-button" data-i18n-key="inv.download">
+                        Download on the App Store
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="page-section">
+             <div class="container">
+                     <div class="text-section" style="padding: 0 0 48px 0;">
+                     <h2 class="section-title" data-i18n-key="inv.features.title">All-in-One Inventory Management</h2>
+                     <p class="section-subtitle" data-i18n-key="inv.features.subtitle">Perfect for small businesses and serious collectors.</p>
+                 </div>
+                 <div class="features-grid">
+                     <div class="feature-item">
+                        <h3 data-i18n-key="inv.feature1.title">Smart Dashboard</h3>
+                        <p data-i18n-key="inv.feature1.body">See low-stock items and reminders at a glance so you always know what needs attention.</p>
+                     </div>
+                     <div class="feature-item">
+                        <h3 data-i18n-key="inv.feature2.title">Detailed Tracking</h3>
+                        <p data-i18n-key="inv.feature2.body">Track items by quantity, cost, SKU/UPC, and category. Calculate margins and sale prices.</p>
+                     </div>
+                     <div class="feature-item">
+                        <h3 data-i18n-key="inv.feature3.title">Business Insights</h3>
+                        <p data-i18n-key="inv.feature3.body">Manage suppliers, track purchase orders, and view sales insights with weekly revenue trends.</p>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="page-section faq-section">
+            <div class="container faq-content">
+                <div class="text-section" style="padding: 0 0 40px 0;">
+                    <h2 class="section-title" data-i18n-key="inv.faq.title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 data-i18n-key="inv.faq1.title">Is this a one-time purchase?</h3>
+                        <p data-i18n-key="inv.faq1.body">Yes. Just like our other apps, My Inventory Stack features core functionality for free, with a single one-time purchase for premium business features. No subscriptions.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 data-i18n-key="inv.faq2.title">Does this sync across devices?</h3>
+                        <p data-i18n-key="inv.faq2.body">Absolutely. All your data is stored securely in your private iCloud account, allowing it to sync seamlessly and privately across your iPhone and iPad.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 data-i18n-key="inv.faq3.title">Can I track sales?</h3>
+                        <p data-i18n-key="inv.faq3.body">Yes, the premium Business module allows you to add sales, manage suppliers, and create purchase orders, giving you a complete overview of your operations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- This div will be populated by ../shared/footer.html -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../shared/scripts.js" defer></script>
+    <script>
+        // Page-specific script for Carousel
+        document.addEventListener('DOMContentLoaded', () => {
+            // A short delay to ensure the main script has loaded the header
+            setTimeout(() => {
+                const track = document.querySelector('.carousel-track');
+                if (!track) return;
+                
+                const slides = Array.from(track.children);
+                const dotsNav = document.getElementById('carousel-dots');
+                let currentIndex = 0;
+                let slideInterval;
+
+                if (slides.length > 0 && dotsNav) {
+                    // Create dots
+                    slides.forEach((_, i) => {
+                        const dot = document.createElement('button');
+                        dot.className = 'carousel-dot';
+                        dot.addEventListener('click', () => {
+                            goToSlide(i);
+                            resetInterval();
+                        });
+                        dotsNav.appendChild(dot);
+                    });
+                    const dots = Array.from(dotsNav.children);
+
+                    const goToSlide = (index) => {
+                        track.style.transform = `translateX(-${index * 100}%)`;
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === index);
+                        });
+                        currentIndex = index;
+                    };
+
+                    const nextSlide = () => {
+                        const nextIndex = (currentIndex + 1) % slides.length;
+                        goToSlide(nextIndex);
+                    };
+                    
+                    const startInterval = () => {
+                        slideInterval = setInterval(nextSlide, 3500); // A bit slower for more slides
+                    };
+
+                    const resetInterval = () => {
+                        clearInterval(slideInterval);
+                        startInterval();
+                    };
+
+                    // Initialize
+                    goToSlide(0);
+                    startInterval();
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -5,7 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // This function now ONLY fetches and stores the translation data.
     async function loadTranslations(lang) {
         const currentPath = window.location.pathname;
-        const isNested = currentPath.startsWith('/spent-today') || currentPath.startsWith('/privacy');
+        // [MODIFIED] Added new app paths to the check
+        const isNested = currentPath.startsWith('/spent-today') || 
+                         currentPath.startsWith('/privacy') || 
+                         currentPath.startsWith('/inventory') || 
+                         currentPath.startsWith('/camerapouch');
         const basePath = isNested ? '../' : '';
 
         try {
@@ -57,7 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerPlaceholder = document.getElementById('header-placeholder');
         const footerPlaceholder = document.getElementById('footer-placeholder');
         const currentPath = window.location.pathname;
-        const isNested = currentPath.startsWith('/spent-today') || currentPath.startsWith('/privacy');
+        // [MODIFIED] Added new app paths to the check
+        const isNested = currentPath.startsWith('/spent-today') || 
+                         currentPath.startsWith('/privacy') || 
+                         currentPath.startsWith('/inventory') || 
+                         currentPath.startsWith('/camerapouch');
         const basePath = isNested ? '../shared/' : 'shared/';
         
         try {
@@ -156,4 +164,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start the process
     loadComponents();
 });
-

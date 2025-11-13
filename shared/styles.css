@@ -380,6 +380,24 @@ a:hover {
     justify-content: center;
 }
 
+/* [NEW] Icon style for Inventory Stack */
+.inventory-stack-icon {
+    background-color: #fefce8; /* Light Yellow */
+    color: #713f12; /* Dark Yellow/Brown */
+}
+
+/* [NEW] Icon style for Camera Pouch */
+.camera-pouch-icon {
+    background-color: #f1f5f9; /* Light Gray */
+    color: #1e293b; /* Dark Gray/Blue */
+}
+
+/* Icon style for Pattern Projects */
+.pattern-projects-icon {
+    background-color: #ecfdf5; /* Light Green */
+    color: #065f46; /* Dark Green */
+}
+
 .app-icon-image { width: 100%; height: 100%; display: block; }
 .app-card-title { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
 .app-card-description { color: var(--secondary-text); }
@@ -585,5 +603,14 @@ a:hover {
         background-color: #064e3b; /* Darker Green */
         color: #a7f3d0; /* Lighter Green */
     }
-}
 
+    /* [NEW] Dark mode for new icons */
+    .inventory-stack-icon {
+        background-color: #422006; /* Dark Brown */
+        color: #fef08a; /* Light Yellow */
+    }
+    .camera-pouch-icon {
+        background-color: #334155; /* Dark Gray/Blue */
+        color: #e2e8f0; /* Light Gray */
+    }
+}
