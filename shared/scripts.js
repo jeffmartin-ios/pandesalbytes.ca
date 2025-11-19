@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const isNested = currentPath.startsWith('/spent-today') || 
                          currentPath.startsWith('/privacy') || 
                          currentPath.startsWith('/my-inventory-stack') || 
-                         currentPath.startsWith('/camera-pouch');
+                         currentPath.startsWith('/camera-pouch') ||
+                         currentPath.startsWith('/habit-habit');
         const basePath = isNested ? '../' : '';
 
         try {
@@ -65,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const isNested = currentPath.startsWith('/spent-today') || 
                          currentPath.startsWith('/privacy') || 
                          currentPath.startsWith('/inventory') || 
-                         currentPath.startsWith('/camerapouch');
+                         currentPath.startsWith('/camerapouch') ||
+                         currentPath.startsWith('/habit-habit');
         const basePath = isNested ? '../shared/' : 'shared/';
         
         try {

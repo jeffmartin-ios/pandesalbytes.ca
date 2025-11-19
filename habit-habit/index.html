@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Habit - Simple Habit Tracker</title>
+    
+    <meta name="apple-itunes-app" content="app-id=PLACEHOLDER_ID">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+    
+    <div style="height: 64px;"></div>
+
+    <main>
+        <section class="hero-carousel hero-section">
+            <div class="container">
+                <h1 class="hero-title" data-i18n-key="hh.hero.title">Habit Habit</h1>
+                <h3 class="hero-subtitle" data-i18n-key="hh.hero.subtitle">Build the Life You Want</h3>
+                
+                <div class="hero-carousel-wrapper">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="../assets/horizons/1-home.png" alt="Habit Habit Home Screen" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/horizons/2-history.png" alt="Habit Habit History Calendar" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/horizons/3-insights.png" alt="Habit Habit Insights" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/horizons/4-achievements.png" alt="Habit Habit Achievements" class="app-screenshot">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="carousel-dots" class="carousel-dots"></div>
+                    <a href="#" class="app-store-button" data-i18n-key="hh.download">
+                        Download on the App Store
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="page-section">
+             <div class="container">
+                     <div class="text-section" style="padding: 0 0 48px 0;">
+                     <h2 class="section-title" data-i18n-key="hh.features.title">Simple & Beautiful Tracking</h2>
+                     <p class="section-subtitle" data-i18n-key="hh.features.subtitle">Designed to be as satisfying as checking off a list, but powerful enough to give you deep insights.</p>
+                 </div>
+                 <div class="features-grid">
+                     <div class="feature-item">
+                        <h3 data-i18n-key="hh.feature1.title">Track Simply</h3>
+                        <p data-i18n-key="hh.feature1.body">Log your habits with a single tap. The clean interface puts your focus on today's goals, not cluttered menus.</p>
+                     </div>
+                     <div class="feature-item">
+                        <h3 data-i18n-key="hh.feature2.title">Visualize Your Wins</h3>
+                        <p data-i18n-key="hh.feature2.body">See your consistency at a glance with the History Calendar. Identify patterns over time with Heatmaps.</p>
+                     </div>
+                     <div class="feature-item">
+                        <h3 data-i18n-key="hh.feature3.title">Level Up Your Life</h3>
+                        <p data-i18n-key="hh.feature3.body">Unlock over 20 unique Achievements as you hit milestones. Gamify your personal growth.</p>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <section id="faq" class="page-section faq-section">
+            <div class="container faq-content">
+                <div class="text-section" style="padding: 0 0 40px 0;">
+                    <h2 class="section-title" data-i18n-key="hh.faq.title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 data-i18n-key="hh.faq1.title">Do I need a subscription?</h3>
+                        <p data-i18n-key="hh.faq1.body">No. We hate monthly fees too. Habit Habit offers a simple, one-time Premium unlock. Pay once, keep it forever.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 data-i18n-key="hh.faq2.title">What is included for free?</h3>
+                        <p data-i18n-key="hh.faq2.body">You can track 1 Habit completely free, including basic streak counters and the simple, clean UI.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 data-i18n-key="hh.faq3.title">What does Premium unlock?</h3>
+                        <p data-i18n-key="hh.faq3.body">Premium unlocks Unlimited Habits, the full History Calendar & Heatmaps, all 20+ Achievements, custom Themes (Retro, Cyberpunk, etc.), and Home Screen Widgets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../shared/scripts.js" defer></script>
+    <script>
+        // Page-specific script for Carousel
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const track = document.querySelector('.carousel-track');
+                if (!track) return;
+                
+                const slides = Array.from(track.children);
+                const dotsNav = document.getElementById('carousel-dots');
+                let currentIndex = 0;
+                let slideInterval;
+
+                if (slides.length > 0 && dotsNav) {
+                    // Create dots
+                    slides.forEach((_, i) => {
+                        const dot = document.createElement('button');
+                        dot.className = 'carousel-dot';
+                        dot.addEventListener('click', () => {
+                            goToSlide(i);
+                            resetInterval();
+                        });
+                        dotsNav.appendChild(dot);
+                    });
+                    const dots = Array.from(dotsNav.children);
+
+                    const goToSlide = (index) => {
+                        track.style.transform = `translateX(-${index * 100}%)`;
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === index);
+                        });
+                        currentIndex = index;
+                    };
+
+                    const nextSlide = () => {
+                        const nextIndex = (currentIndex + 1) % slides.length;
+                        goToSlide(nextIndex);
+                    };
+                    
+                    const startInterval = () => {
+                        slideInterval = setInterval(nextSlide, 3000);
+                    };
+
+                    const resetInterval = () => {
+                        clearInterval(slideInterval);
+                        startInterval();
+                    };
+
+                    // Initialize
+                    goToSlide(0);
+                    startInterval();
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
