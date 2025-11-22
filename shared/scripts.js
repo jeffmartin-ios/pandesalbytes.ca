@@ -5,11 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // This function now ONLY fetches and stores the translation data.
     async function loadTranslations(lang) {
         const currentPath = window.location.pathname;
-        // [MODIFIED] Added new app paths to the check
         const isNested = currentPath.startsWith('/spent-today') || 
                          currentPath.startsWith('/privacy') || 
-                         currentPath.startsWith('/my-inventory-stack') || 
-                         currentPath.startsWith('/camera-pouch') ||
+                         currentPath.startsWith('/inventory') || 
+                         currentPath.startsWith('/camerapouch') ||
                          currentPath.startsWith('/habit-habit');
         const basePath = isNested ? '../' : '';
 
@@ -42,17 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Step 1: Determine the initial language and load the translation data first.
         const savedLang = localStorage.getItem('userLanguage');
         const browserLang = navigator.language.split('-')[0];
-        const supportedLangs = ['en', 'ja', 'zh', 'fr', 'th'];
+        const supportedLangs = ['en', 'ja'];
         const browserLangCode = navigator.language;
         let initialLang = 'en';
         if (savedLang) {
             initialLang = savedLang;
-        } else if (browserLangCode === 'zh-CN') {
-            initialLang = 'zh-CN';
-        } else if (browserLangCode === 'zh-TW' || browserLang === 'zh') {
-            initialLang = 'zh-TW';
-        } else if (browserLang === 'fr') {
-            initialLang = 'fr-CA';
         } else if (supportedLangs.includes(browserLang)) {
             initialLang = browserLang;
         }
