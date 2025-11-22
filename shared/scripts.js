@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
                          currentPath.startsWith('/privacy') || 
                          currentPath.startsWith('/inventory') || 
                          currentPath.startsWith('/camerapouch') ||
-                         currentPath.startsWith('/habit-habit');
+                         currentPath.startsWith('/habit-habit') ||
+                         currentPath.startsWith('/simulatedfilm');
         const basePath = isNested ? '../' : '';
 
         try {
@@ -42,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedLang = localStorage.getItem('userLanguage');
         const browserLang = navigator.language.split('-')[0];
         const supportedLangs = ['en', 'ja'];
-        const browserLangCode = navigator.language;
         let initialLang = 'en';
         if (savedLang) {
             initialLang = savedLang;
@@ -55,12 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerPlaceholder = document.getElementById('header-placeholder');
         const footerPlaceholder = document.getElementById('footer-placeholder');
         const currentPath = window.location.pathname;
-        // [MODIFIED] Added new app paths to the check
+        
         const isNested = currentPath.startsWith('/spent-today') || 
                          currentPath.startsWith('/privacy') || 
                          currentPath.startsWith('/inventory') || 
                          currentPath.startsWith('/camerapouch') ||
-                         currentPath.startsWith('/habit-habit');
+                         currentPath.startsWith('/habit-habit') ||
+                         currentPath.startsWith('/simulatedfilm');
         const basePath = isNested ? '../shared/' : 'shared/';
         
         try {
@@ -78,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // [THE FIX] Defer the final setup until the browser has processed the injected HTML.
-            // A timeout of 0ms waits for the current execution to finish, ensuring the DOM is ready.
             setTimeout(() => {
                 // Step 3: Initialize component interactivity (menus, dropdowns, etc.).
                 initializeHeader();
@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const eventType = ('ontouchend' in document.documentElement) ? 'touchend' : 'click';
 
             langOptions.forEach(option => {
-                // This event handler is now async to handle the await call.
                 option.addEventListener(eventType, async (e) => {
                     e.preventDefault();
                     const selectedLang = option.getAttribute('data-lang');

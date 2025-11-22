@@ -50,10 +50,18 @@
         <div class="menu-scroller">
             <!-- Main Menu Links -->
             <nav class="main-nav">
-                <a href="/spent-today/" data-i18n-key="nav.spent-today">Spent Today</a>
-                <a href="/inventory/" data-i18n-key="nav.inventory">My Inventory Stack</a>
-                <a href="/camerapouch/" data-i18n-key="nav.camerapouch">Camera Pouch</a>
-                <a href="/habit-habit/" data-i18n-key="nav.habit-habit">Habit Habit</a>
+                <div class="nav-category">
+                    <span class="nav-category-title" data-i18n-key="home.category.photography">Photography</span>
+                    <a href="/camerapouch/" data-i18n-key="nav.camerapouch">Camera Pouch</a>
+                    <a href="/simulatedfilm/" data-i18n-key="nav.simulated-film">Simulated Film</a>
+                </div>
+
+                <div class="nav-category">
+                    <span class="nav-category-title" data-i18n-key="home.category.productivity">Productivity</span>
+                    <a href="/spent-today/" data-i18n-key="nav.spent-today">Spent Today</a>
+                    <a href="/inventory/" data-i18n-key="nav.inventory">My Inventory Stack</a>
+                    <a href="/habit-habit/" data-i18n-key="nav.habit-habit">Habit Habit</a>
+                </div>
             </nav>
         </div>
 
@@ -66,3 +74,29 @@
         </footer>
     </div>
 </div>
+
+<style>
+    /* Inline styles for the new grouped menu structure */
+    .nav-category {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-category-title {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--secondary-text);
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+    .main-nav a {
+        font-size: 32px;
+        padding: 8px 0;
+    }
+    @media (max-height: 700px) {
+        .main-nav a { font-size: 24px; padding: 6px 0; }
+        .nav-category { margin-bottom: 16px; }
+    }
+</style>
