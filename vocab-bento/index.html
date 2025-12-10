@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocab Bento - Japanese Study Companion</title>
+    
+    <!-- Smart App Banner for iOS -->
+    <meta name="apple-itunes-app" content="app-id=6754298150">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+
+    <!-- This div will be populated by ../shared/header.html -->
+    <div id="header-placeholder"></div>
+    
+    <!-- A simple spacer for the fixed header -->
+    <div style="height: 64px;"></div>
+
+    <main>
+        <!-- Carousel Hero -->
+        <section class="hero-carousel hero-section">
+            <div class="container">
+                <h1 class="hero-title" data-i18n-key="vb.hero.title">Vocab Bento</h1>
+                <h3 class="hero-subtitle" data-i18n-key="vb.hero.subtitle">Your Daily Japanese Study Companion</h3>
+                
+                <div class="hero-carousel-wrapper">
+                    <!-- Phone Frame -->
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="../assets/benkyo/1-home.png" alt="Vocab Bento Home" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/benkyo/2-vocab.png" alt="Vocabulary List" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/benkyo/3-kana.png" alt="Kana Practice" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/benkyo/4-packs.png" alt="Study Packs" class="app-screenshot">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="../assets/benkyo/5-insights.png" alt="Study Insights" class="app-screenshot">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Carousel Dots -->
+                    <div id="carousel-dots" class="carousel-dots"></div>
+                    <!-- CTA Button -->
+                    <a href="https://apps.apple.com/us/app/vocab-bento-japanese-study/id6754298150" target="_blank" rel="noopener" class="app-store-button" data-i18n-key="vb.download">
+                        Download on the App Store
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="page-section">
+             <div class="container">
+                     <div class="text-section" style="padding: 0 0 48px 0;">
+                     <h2 class="section-title" data-i18n-key="vb.features.title">Master Japanese Vocabulary</h2>
+                     <p class="section-subtitle" data-i18n-key="vb.features.subtitle">A simple, effective flashcard app designed to help you learn and retain Japanese words.</p>
+                 </div>
+                 <div class="features-grid">
+                     <div class="feature-item">
+                        <h3 data-i18n-key="vb.feature1.title">Smart Flashcards</h3>
+                        <p data-i18n-key="vb.feature1.body">Learn efficiently with spaced repetition. The app knows when you need to review words to maximize retention.</p>
+                     </div>
+                     <div class="feature-item">
+                        <h3 data-i18n-key="vb.feature2.title">JLPT Ready</h3>
+                        <p data-i18n-key="vb.feature2.body">Curated vocabulary lists for JLPT N5 through N1 levels. Track your progress as you master each level.</p>
+                     </div>
+                     <div class="feature-item">
+                        <h3 data-i18n-key="vb.feature3.title">Kana Reference</h3>
+                        <p data-i18n-key="vb.feature3.body">Quick access to Hiragana and Katakana charts with audio pronunciation guides for beginners.</p>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="page-section faq-section">
+            <div class="container faq-content">
+                <div class="text-section" style="padding: 0 0 40px 0;">
+                    <h2 class="section-title" data-i18n-key="vb.faq.title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 data-i18n-key="vb.faq1.title">Is audio included?</h3>
+                        <p data-i18n-key="vb.faq1.body">Yes, all vocabulary words and Kana characters include native audio pronunciation to help you speak correctly.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 data-i18n-key="vb.faq2.title">Can I use it offline?</h3>
+                        <p data-i18n-key="vb.faq2.body">Yes, the core database and study features work offline so you can practice on the go, even on the subway.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 data-i18n-key="vb.faq3.title">Are there custom lists?</h3>
+                        <p data-i18n-key="vb.faq3.body">Beyond JLPT, we offer specialized packs for travel, business, anime, and more to suit your specific interests.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- This div will be populated by ../shared/footer.html -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../shared/scripts.js" defer></script>
+    <script>
+        // Page-specific script for Carousel
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const track = document.querySelector('.carousel-track');
+                if (!track) return;
+                
+                const slides = Array.from(track.children);
+                const dotsNav = document.getElementById('carousel-dots');
+                let currentIndex = 0;
+                let slideInterval;
+
+                if (slides.length > 0 && dotsNav) {
+                    slides.forEach((_, i) => {
+                        const dot = document.createElement('button');
+                        dot.className = 'carousel-dot';
+                        dot.addEventListener('click', () => {
+                            goToSlide(i);
+                            resetInterval();
+                        });
+                        dotsNav.appendChild(dot);
+                    });
+                    const dots = Array.from(dotsNav.children);
+
+                    const goToSlide = (index) => {
+                        track.style.transform = `translateX(-${index * 100}%)`;
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === index);
+                        });
+                        currentIndex = index;
+                    };
+
+                    const nextSlide = () => {
+                        const nextIndex = (currentIndex + 1) % slides.length;
+                        goToSlide(nextIndex);
+                    };
+                    
+                    const startInterval = () => {
+                        slideInterval = setInterval(nextSlide, 3500);
+                    };
+
+                    const resetInterval = () => {
+                        clearInterval(slideInterval);
+                        startInterval();
+                    };
+
+                    goToSlide(0);
+                    startInterval();
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

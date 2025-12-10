@@ -16,6 +16,10 @@
             color: #c2410c; /* Dark Orange */
             font-size: 32px; /* For the fallback emoji if needed */
         }
+        .vocab-bento-icon {
+            background-color: #fef2f2; /* Light Red */
+            color: #991b1b; /* Dark Red */
+        }
     </style>
 </head>
 <body>
@@ -196,18 +200,37 @@
                     </div>
                 </a>
 
-                <!-- App Card: Recipe Mini (NEW) -->
+                <!-- App Card: Recipe Mini -->
                 <a href="recipe-mini/" class="app-card card-style">
                     <div class="app-card-content">
                         <div>
                             <div class="app-card-header">
                                 <div class="app-icon-placeholder recipe-mini-icon">
-                                    <!-- Fallback to emoji if image fails, as explicit icon path wasn't in context but assumed standard structure -->
-                                    <img src="assets/pagkain/icon.png" onerror="this.style.display='none'; this.parentElement.innerText='🍳'" alt="Recipe Mini App Icon" class="app-icon-image">
+                                    <img src="assets/pagkain/icon.png" onerror="this.style.display='none';" alt="Recipe Mini App Icon" class="app-icon-image">
                                 </div>
                                 <div>
                                     <h2 class="app-card-title" data-i18n-key="app.recipe-mini.title">Recipe Mini</h2>
                                     <p class="app-card-description" data-i18n-key="app.recipe-mini.description">Your personal cookbook, meal planner, and shopping assistant.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-card-cta">
+                            <span class="cta-button" data-i18n-key="app.view-app">View App</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- App Card: Vocab Bento (NEW) -->
+                <a href="vocab-bento/" class="app-card card-style">
+                    <div class="app-card-content">
+                        <div>
+                            <div class="app-card-header">
+                                <div class="app-icon-placeholder vocab-bento-icon">
+                                    <img src="assets/benkyo/icon.png" alt="Vocab Bento App Icon" class="app-icon-image">
+                                </div>
+                                <div>
+                                    <h2 class="app-card-title" data-i18n-key="app.vocab-bento.title">Vocab Bento</h2>
+                                    <p class="app-card-description" data-i18n-key="app.vocab-bento.description">Your daily Japanese vocabulary study companion.</p>
                                 </div>
                             </div>
                         </div>
